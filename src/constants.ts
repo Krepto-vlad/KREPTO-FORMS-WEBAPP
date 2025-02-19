@@ -8,6 +8,6 @@ export const formDataInitial: RegisterUser = {
 };
 
 export const loginUrl = "/login";
-
+export const testUrl = "/test";
 export const registerUrl = "/register";
 
