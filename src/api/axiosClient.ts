@@ -2,13 +2,13 @@ import axios from "axios";
 
 const axiosClient = axios.create({
   
-  baseURL: "https://krepto-forms-backend.onrender.com",
+  baseURL: 'https://krepto-forms-backend.onrender.com',
   headers: {
     "Content-Type": "application/json",
   },
   withCredentials: true,
 });
-console.log("axs client created");
+console.log("axs client created", import.meta.env.VITE_API_BASE_URL);
 axiosClient.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
