@@ -2,7 +2,7 @@ import axios from "axios";
 
 const axiosClient = axios.create({
   
-  baseURL: 'https://krepto-forms-backend.onrender.com',
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   headers: {
     "Content-Type": "application/json",
   },
