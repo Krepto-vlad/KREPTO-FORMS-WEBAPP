@@ -8,7 +8,7 @@ const axiosClient = axios.create({
   },
   withCredentials: true,
 });
-console.log("axs client created", import.meta.env.VITE_API_BASE_URL);
+                                      console.log("axs client created", import.meta.env.VITE_API_BASE_URL);
 axiosClient.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
