@@ -12,3 +12,7 @@ export const createTemplate = async (formData: unknown) => {
         },
     });
 };
+
+export const getForms = async () => {
+    return axios.get(`${API_URL}/forms`);
+};

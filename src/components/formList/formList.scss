@@ -5,4 +5,44 @@ div {
         background-color: chocolate;
         
     }
+
+    .forms-page {
+        text-align: center;
+        padding: 20px;
+
+        .forms-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .form-card {
+            width: 250px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #fff;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: 0.3s;
+        
+            &:hover {
+                transform: scale(1.05);
+            }
+        
+            h2 {
+                margin-bottom: 10px;
+            }
+        
+            .form-theme {
+                display: block;
+                margin-top: 10px;
+                font-size: 0.9em;
+                color: gray;
+            }
+        }
+    }
+    
+    
 }
+
