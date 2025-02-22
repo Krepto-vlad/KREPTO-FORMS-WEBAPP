@@ -22,6 +22,7 @@ const LoginForm = () => {
 
       if (response.token) {
         localStorage.setItem("token", response.token);
+        localStorage.setItem("userId", String(response.user.id));
         navigate("/");
       }
     } catch (error) {
@@ -35,6 +36,7 @@ const LoginForm = () => {
       const response = await loginUser(formData);
       if (response.token) {
         localStorage.setItem("token", response.token);
+        localStorage.setItem("userId", String(response.user.id));
         navigate("/");
       }
     } catch (error) {

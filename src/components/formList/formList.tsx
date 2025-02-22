@@ -24,13 +24,16 @@ const FormList = () => {
     }, []);
 
     
+    const userIdNumber = userId ? Number(userId) : null;
+    
     const handleFormClick = (form: Form) => {
-        if (form.user_id === userId) {
-            navigate(`/edit-form/${form.id}`); // Переход к редактированию
+        if (userIdNumber !== null && form.user_id === userIdNumber) {
+            navigate(`/edit-form/${form.id}`);
         } else {
-            navigate(`/pass-form/${form.id}`); // Переход к прохождению
+            navigate(`/pass-form/${form.id}`);
         }
     };
+    
 
 
     return(
