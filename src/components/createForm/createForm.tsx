@@ -41,7 +41,7 @@ const CreateForm = () => {
 
         try {
             await createTemplate(newForm);
-            navigate("/"); // Возвращаемся на главную после создания
+            navigate("/");
         } catch (error) {
             console.error("Error creating form:", error);
         }
