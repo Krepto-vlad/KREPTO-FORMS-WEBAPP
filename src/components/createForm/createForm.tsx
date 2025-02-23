@@ -22,6 +22,7 @@ const CreateForm = () => {
         updatedQuestions[index] = value;
         setQuestions(updatedQuestions);
     };
+    const userId = localStorage.getItem("userId");
 
     const handleSubmit = async () => {
         if (!title || !description) return alert("Title and description are required!");
@@ -31,7 +32,11 @@ const CreateForm = () => {
             description,
             theme,
             // tags,
-            questions
+            questions,
+            user: {
+                id: userId
+            },
+            
         };
 
         try {
