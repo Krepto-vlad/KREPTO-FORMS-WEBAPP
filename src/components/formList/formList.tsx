@@ -8,7 +8,6 @@ const FormList = () => {
 
     const [forms, setForms] = useState<Form[]>([]);
     const navigate = useNavigate();
-    const userId = Number(localStorage.getItem("userId")); // ID текущего пользователя
 
     useEffect(() => {
         const fetchForms = async () => {
@@ -23,7 +22,7 @@ const FormList = () => {
         fetchForms();
     }, []);
 
-    
+    const userId = localStorage.getItem("userId"); // ID текущего пользователя   
     const userIdNumber = userId ? Number(userId) : null;
     
     const handleFormClick = (form: Form) => {
