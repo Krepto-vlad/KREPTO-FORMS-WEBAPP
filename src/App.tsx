@@ -3,7 +3,8 @@ import { FormsPage } from "./pages/formsPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { LoginPage } from "./pages/loginPage";
 import { CreateFormsPage } from "./pages/createFormPage";
-// import { EditFormPage } from "./pages/editFormPage";
+import { EditFormPage } from "./pages/editFormPage";
+import { PassFormPage } from "./pages/passFormPage";
 
 function App() {
   return (
@@ -13,8 +14,8 @@ function App() {
           <Route element={<FormsPage />} path="/" />
           <Route element={<LoginPage />} path="/login"/>
           <Route element={<CreateFormsPage />} path="/create-form"/>
-          {/* <Route element={<EditFormPage />} path="/"
-          <Route element={} */}
+          <Route element={<EditFormPage />} path="/edit-form/:id"/>
+          <Route element={<PassFormPage/>} path="/path-form/:id"/>
         </Routes>
       </BrowserRouter>
     </>
