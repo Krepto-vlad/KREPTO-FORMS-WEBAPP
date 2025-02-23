@@ -33,7 +33,9 @@ const CreateForm = () => {
             theme,
             // tags,
             questions,
-            user_id: Number(userId),
+            user: {
+                id: userId
+            },
             
         };
 
