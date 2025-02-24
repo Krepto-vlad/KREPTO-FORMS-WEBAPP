@@ -70,7 +70,14 @@ const EditForm = () => {
 
   const handleSave = async () => {
     try {
-      await axios.put(`${import.meta.env.VITE_API_BASE_URL}/forms/${id}`, form);
+      const token = localStorage.getItem("token");
+      await axios.put(`${import.meta.env.VITE_API_BASE_URL}/forms/${id}`, form,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // ✅ Передаем токен
+        },
+      }
+        );
       navigate("/"); 
     } catch (err) {
       console.error("Error saving form:", err);
