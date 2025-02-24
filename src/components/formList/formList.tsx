@@ -37,11 +37,14 @@ const FormList = () => {
 
     return(
         <div>
-            <button className="create-form-btn" onClick={() => navigate("/create-form")}>
-                + Create Form
-            </button>
+
             <div className="forms-page">
-                <h1>All Forms</h1>
+                <div className="form-creation">
+                    <h1>All Forms</h1>
+                    <button className="create-form-btn" onClick={() => navigate("/create-form")}>
+                        + Create Form
+                    </button>
+                </div>
                 <div className="forms-container">
                     {forms.map((form) => (
                         <div key={form.id} className="form-card" onClick={() => handleFormClick(form)}>
