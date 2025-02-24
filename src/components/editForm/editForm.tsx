@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { deleteForm } from "../../api/formService";
 import axios from "axios";
 
 interface Form {
@@ -67,6 +68,14 @@ const EditForm = () => {
     });
   };
 
+  const handleDeleteForm = async () => {
+    try {
+      await deleteForm(id as string); 
+      navigate("/forms");
+    } catch (error) {
+      console.error("Error deleting form:", error);
+    }
+  };
 
   const handleSave = async () => {
     try {
@@ -74,7 +83,7 @@ const EditForm = () => {
       await axios.put(`${import.meta.env.VITE_API_BASE_URL}/forms/${id}`, form,
         {
           headers: {
-            Authorization: `Bearer ${token}`, // ✅ Передаем токен
+            Authorization: `Bearer ${token}`, 
         },
       }
         );
@@ -128,6 +137,9 @@ const EditForm = () => {
       <button onClick={handleAddQuestion}>Add a question</button>
 
       <button onClick={handleSave}>Save</button>
+      <button onClick={handleDeleteForm} className="delete-form-btn">
+          Delete Form
+      </button>
     </div>
   );
 };

@@ -16,3 +16,15 @@ export const createTemplate = async (formData: unknown) => {
 export const getForms = async () => {
   return axios.get(`${API_URL}/forms`);
 };
+
+export const deleteForm = async (id: string) => {
+  const token = localStorage.getItem("token"); 
+  
+  const response = await axios.delete(`${API_URL}/forms/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`, 
+    },
+  });
+
+  return response.data;
+};
