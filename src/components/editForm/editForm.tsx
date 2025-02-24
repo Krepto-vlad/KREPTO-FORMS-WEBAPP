@@ -70,8 +70,19 @@ const EditFormPage = () => {
 
   const handleSave = async () => {
     try {
-      await axios.put(`${import.meta.env.VITE_API_BASE_URL}/forms/${id}`, form);
-      navigate("/"); // После успешного обновления переходим на главную
+      const token = localStorage.getItem("token");
+      if (!token) {
+        console.error("❌ No token!");
+        setError("Authentication error. Please log in again.");
+        return;
+      }
+
+      await axios.put(`${import.meta.env.VITE_API_BASE_URL}/forms/${id}`, form,
+        {
+          headers: { Authorization: `Bearer ${token}` }, 
+        }
+      );
+      navigate("/"); 
     } catch (err) {
       console.error("Error saving form:", err);
       setError("Error saving form. Try again.");
@@ -85,7 +96,7 @@ const EditFormPage = () => {
     <div>
       <h2>Editing a form</h2>
 
-      {/* Поле заголовка */}
+
       <label>
         Headline:
         <input
@@ -96,7 +107,7 @@ const EditFormPage = () => {
         />
       </label>
 
-      {/* Поле описания */}
+
       <label>
         Description:
         <textarea
@@ -106,7 +117,6 @@ const EditFormPage = () => {
         />
       </label>
 
-      {/* Список вопросов */}
       <h3>Questions:</h3>
       {form.questions.map((question, index) => (
         <div key={index}>
@@ -119,10 +129,8 @@ const EditFormPage = () => {
         </div>
       ))}
 
-      {/* Кнопка добавления вопроса */}
       <button onClick={handleAddQuestion}>Add a question</button>
 
-      {/* Кнопка сохранения */}
       <button onClick={handleSave}>Save</button>
     </div>
   );
