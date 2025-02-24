@@ -50,9 +50,9 @@
     .question-wrapper{
         display: flex;
         gap: 10px;
+        width: 50%;
 
         .question{
-            width: 50%;
             height: 30px;
             border-radius: 5px;
             border: 2px solid #ccc;
@@ -73,7 +73,7 @@
         }
     }
 
-    .question{
+    .question {
         width: 50%;
         height: 30px;
         border-radius: 5px;
