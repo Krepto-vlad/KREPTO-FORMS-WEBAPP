@@ -14,7 +14,7 @@ const PassForm = () => {
         setForm(res.data);
         setAnswers(new Array(res.data.questions.length).fill(""));
       })
-      .catch((err) => console.error("Ошибка загрузки формы:", err));
+      .catch((err) => console.error("Error loading form:", err));
   }, [id]);
 
   const handleChange = (index: number, value: string) => {
@@ -28,7 +28,7 @@ const PassForm = () => {
       await axios.post(`/forms/${id}/submit`, { answers });
       navigate("/");
     } catch (err) {
-      console.error("Ошибка отправки ответов:", err);
+      console.error("Error sending responses:", err);
     }
   };
 
@@ -41,7 +41,7 @@ const PassForm = () => {
           <input value={answers[index]} onChange={(e) => handleChange(index, e.target.value)} />
         </div>
       ))}
-      <button onClick={handleSubmit}>Отправить ответы</button>
+      <button onClick={handleSubmit}>Send answers</button>
     </div>
   );
 };

@@ -15,14 +15,14 @@ const FormList = () => {
                 const response = await getForms();
                 setForms(response.data);
             } catch (error) {
-                console.error("Ошибка при получении форм:", error);
+                console.error("Error while retrieving forms:", error);
             }
         };
 
         fetchForms();
     }, []);
 
-    const userId = localStorage.getItem("userId"); // ID текущего пользователя   
+    const userId = localStorage.getItem("userId"); 
     const userIdNumber = userId ? Number(userId) : null;
     
     const handleFormClick = (form: Form) => {

@@ -8,60 +8,124 @@ interface Form {
   questions: string[];
 }
 
-const EditForm = () => {
-  const { id } = useParams();
+const EditFormPage = () => {
+  const { id } = useParams(); 
   const navigate = useNavigate();
-  const [form, setForm] = useState<Form>({ title: "", description: "", questions: [] });
+
+  const [form, setForm] = useState<Form>({
+    title: "",
+    description: "",
+    questions: [],
+  });
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    axios.get(`/forms/${id}`)
-      .then((res) => setForm(res.data))
-      .catch((err) => console.error("Ошибка загрузки формы:", err));
+    const fetchForm = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_BASE_URL}/forms/${id}`
+        );
+        setForm(response.data);
+      } catch (err) {
+        console.error("Error loading form:", err);
+        setError("Error loading form. Try again.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchForm();
   }, [id]);
 
-  const handleChange = (
+  const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     index?: number
   ) => {
     if (typeof index === "number") {
-      setForm((prevForm) => {
-        const updatedQuestions = [...prevForm.questions];
-        updatedQuestions[index] = e.target.value; // ✅ Теперь TypeScript не ругается
-        return { ...prevForm, questions: updatedQuestions };
+      setForm((prev) => {
+        const updatedQuestions = [...prev.questions];
+        updatedQuestions[index] = e.target.value;
+        return { ...prev, questions: updatedQuestions };
       });
     } else {
-      setForm((prevForm) => ({
-        ...prevForm,
-        [e.target.name]: e.target.value,
-      }));
+ 
+      setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     }
   };
 
-  const handleSubmit = async () => {
+  const handleAddQuestion = () => {
+    setForm((prev) => ({ ...prev, questions: [...prev.questions, ""] }));
+  };
+
+
+  const handleRemoveQuestion = (index: number) => {
+    setForm((prev) => {
+      const updatedQuestions = prev.questions.filter((_, i) => i !== index);
+      return { ...prev, questions: updatedQuestions };
+    });
+  };
+
+
+  const handleSave = async () => {
     try {
-      await axios.put(`/forms/${id}`, form);
-      navigate("/");
+      await axios.put(`${import.meta.env.VITE_API_BASE_URL}/forms/${id}`, form);
+      navigate("/"); // После успешного обновления переходим на главную
     } catch (err) {
-      console.error("Ошибка обновления формы:", err);
+      console.error("Error saving form:", err);
+      setError("Error saving form. Try again.");
     }
   };
+
+  if (loading) return <p>Loading form...</p>;
+  if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   return (
     <div>
-      <h2>Редактирование формы</h2>
-      <input name="title" value={form.title} onChange={handleChange} placeholder="Название" />
-      <textarea name="description" value={form.description} onChange={handleChange} placeholder="Описание" />
-      {form.questions.map((q, index) => (
+      <h2>Editing a form</h2>
+
+      {/* Поле заголовка */}
+      <label>
+        Headline:
         <input
-          key={index}
-          value={q}
-          onChange={(e) => handleChange(e, index)}
-          placeholder="Вопрос"
+          type="text"
+          name="title"
+          value={form.title}
+          onChange={handleInputChange}
         />
+      </label>
+
+      {/* Поле описания */}
+      <label>
+        Description:
+        <textarea
+          name="description"
+          value={form.description}
+          onChange={handleInputChange}
+        />
+      </label>
+
+      {/* Список вопросов */}
+      <h3>Questions:</h3>
+      {form.questions.map((question, index) => (
+        <div key={index}>
+          <input
+            type="text"
+            value={question}
+            onChange={(e) => handleInputChange(e, index)}
+          />
+          <button onClick={() => handleRemoveQuestion(index)}>Delete</button>
+        </div>
       ))}
-      <button onClick={handleSubmit}>Сохранить</button>
+
+      {/* Кнопка добавления вопроса */}
+      <button onClick={handleAddQuestion}>Add a question</button>
+
+      {/* Кнопка сохранения */}
+      <button onClick={handleSave}>Save</button>
     </div>
   );
 };
 
-export default EditForm;
+export default EditFormPage;
