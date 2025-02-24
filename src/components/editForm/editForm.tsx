@@ -99,10 +99,10 @@ const EditForm = () => {
 
   return (
     <div>
-      <h2>Editing a form</h2>
+      <p>Editing a form</p>
 
 
-      <label>
+      <label className="headline">
         Headline:
         <input
           type="text"
@@ -113,7 +113,7 @@ const EditForm = () => {
       </label>
 
 
-      <label>
+      <label className="description">
         Description:
         <textarea
           name="description"
