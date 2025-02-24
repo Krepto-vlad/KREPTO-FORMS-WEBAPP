@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { deleteForm } from "../../api/formService";
+import "./editForm.scss";
 import axios from "axios";
 
 interface Form {
