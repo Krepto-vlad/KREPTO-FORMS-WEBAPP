@@ -99,11 +99,11 @@ const EditForm = () => {
 
   return (
     <div>
-      <p>Editing a form</p>
+      <p className="head">Editing a form</p>
 
 
-      <label className="headline">
-        Headline:
+      <label className="Title">
+        Title:
         <input
           type="text"
           name="title"
@@ -113,19 +113,17 @@ const EditForm = () => {
       </label>
 
 
-      <label className="description">
-        Description:
-        <textarea
+      <p className="description-title">Description:</p>
+        <textarea className="description"
           name="description"
           value={form.description}
           onChange={handleInputChange}
         />
-      </label>
 
       <h3>Questions:</h3>
       {form.questions.map((question, index) => (
-        <div key={index}>
-          <input
+        <div  className="question-wrapper" key={index}>
+          <input className="question"
             type="text"
             value={question}
             onChange={(e) => handleInputChange(e, index)}
@@ -134,12 +132,9 @@ const EditForm = () => {
         </div>
       ))}
 
-      <button onClick={handleAddQuestion}>Add a question</button>
-
-      <button onClick={handleSave}>Save</button>
-      <button onClick={handleDeleteForm} className="delete-form-btn">
-          Delete Form
-      </button>
+      <button className="add-question" onClick={handleAddQuestion}>+ Add Question</button>
+      <button className="save" onClick={handleSave}>Save Form</button>
+      <button className="delete-form-btn" onClick={handleDeleteForm} >Delete Form</button>
     </div>
   );
 };

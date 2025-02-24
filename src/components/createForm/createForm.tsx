@@ -48,22 +48,21 @@ const CreateForm = () => {
     };
 
     return (
-        <div className="create-form-page">
-            <h1>Create New Form</h1>
+        <div className="create-form">
+            <p className="head">Create New Form</p>
 
-            <label>
+            <label className="Title">
                 Title:
                 <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
             </label>
 
-            <label>
-                Description:
-                <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
-            </label>
+            <p className="description-title">Description:</p>
+            <textarea className="description" value={description} onChange={(e) => setDescription(e.target.value)} />
+
 
             <label>
                 Theme:
-                <select value={theme} onChange={(e) => setTheme(e.target.value)}>
+                <select className="custom-select"value={theme} onChange={(e) => setTheme(e.target.value)}>
                     <option value="Education">Education</option>
                     <option value="Test">Test</option>
                     <option value="Survey">Survey</option>
@@ -71,10 +70,8 @@ const CreateForm = () => {
                 </select>
             </label>
 
-            <button onClick={handleAddQuestion}>+ Add Question</button>
-
             {questions.map((question, index) => (
-                <input
+                <input className="question"
                     key={index}
                     type="text"
                     value={question}
@@ -83,7 +80,8 @@ const CreateForm = () => {
                 />
             ))}
 
-            <button onClick={handleSubmit}>Save Form</button>
+            <button className="add-question" onClick={handleAddQuestion}>+ Add Question</button>
+            <button className="save" onClick={handleSubmit}>Save Form</button>
         </div>
     );
 }
