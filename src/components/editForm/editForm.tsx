@@ -99,7 +99,7 @@ const EditForm = () => {
   if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   return (
-    <div>
+    <div className="edit-form">
       <p className="head">Editing a form</p>
 
 
