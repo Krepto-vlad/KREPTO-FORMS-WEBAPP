@@ -71,7 +71,7 @@ const EditForm = () => {
   const handleDeleteForm = async () => {
     try {
       await deleteForm(id as string); 
-      navigate("/forms");
+      navigate("/");
     } catch (error) {
       console.error("Error deleting form:", error);
     }
