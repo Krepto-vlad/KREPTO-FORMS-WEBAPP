@@ -8,7 +8,7 @@ interface Form {
   questions: string[];
 }
 
-const EditFormPage = () => {
+const EditForm = () => {
   const { id } = useParams(); 
   const navigate = useNavigate();
 
@@ -125,4 +125,4 @@ const EditFormPage = () => {
   );
 };
 
-export default EditFormPage;
+export default EditForm;
