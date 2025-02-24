@@ -2,7 +2,7 @@ import axiosClient from "./axiosClient";
 import {
   RegisterUser,
   LoginUser,
-  AxiosErrorResponse,
+  AxiosErrorResponse
 } from "../types/authTypes";
 
 export const registerUser = async (formData: RegisterUser) => {
