@@ -70,18 +70,7 @@ const EditFormPage = () => {
 
   const handleSave = async () => {
     try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        console.error("❌ No token!");
-        setError("Authentication error. Please log in again.");
-        return;
-      }
-
-      await axios.put(`${import.meta.env.VITE_API_BASE_URL}/forms/${id}`, form,
-        {
-          headers: { Authorization: `Bearer ${token}` }, 
-        }
-      );
+      await axios.put(`${import.meta.env.VITE_API_BASE_URL}/forms/${id}`, form);
       navigate("/"); 
     } catch (err) {
       console.error("Error saving form:", err);
