@@ -8,13 +8,29 @@ const PassForm = () => {
   const [form, setForm] = useState({ title: "", questions: [] });
   const [answers, setAnswers] = useState<string[]>([]);
 
+  // useEffect(() => {
+  //   axios.get(`/forms/${id}`)
+  //     .then((res) => {
+  //       setForm(res.data);
+  //       setAnswers(new Array(res.data.questions.length).fill(""));
+  //     })
+  //     .catch((err) => console.error("Error loading form:", err));
+  // }, [id]);
+
   useEffect(() => {
-    axios.get(`/forms/${id}`)
-      .then((res) => {
-        setForm(res.data);
-        setAnswers(new Array(res.data.questions.length).fill(""));
-      })
-      .catch((err) => console.error("Error loading form:", err));
+    const fetchForm = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_BASE_URL}/forms/${id}`
+        );
+        setForm(response.data);
+        setAnswers(new Array(response.data.questions.length).fill(""));
+      } catch (err) {
+        console.error("Error loading form:", err);
+      }
+    };
+
+    fetchForm();
   }, [id]);
 
   const handleChange = (index: number, value: string) => {
