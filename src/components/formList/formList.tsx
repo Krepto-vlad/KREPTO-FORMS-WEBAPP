@@ -55,7 +55,7 @@ const FormList = () => {
                             <h2>{form.title}</h2>
                             <p>{form.description}</p>
                             <span className="form-theme">{form.theme}</span>
-                            <button onClick={() => handlePassForm(form)}>Pass Form</button>
+                            <button className="pass-form-btn" onClick={() => handlePassForm(form)}>Pass Form</button>
                         </div>
                     ))}
                 </div>
