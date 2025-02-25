@@ -48,17 +48,18 @@ const FormList = () => {
                     <button className="create-form-btn" onClick={() => navigate("/create-form")}>
                         + Create Form
                     </button>
+                    
                 </div>
                 <div className="forms-container">
                     {forms.map((form) => (
-                        <>
+                        <div className="card-wrapper">
                             <div key={form.id} className="form-card" onClick={() => handleFormClick(form)}>
                                 <h2>{form.title}</h2>
                                 <p>{form.description}</p>
                                 <span className="form-theme">{form.theme}</span>
                             </div>
                             <button className="pass-form-btn" onClick={() => handlePassForm(form)}>Pass Form</button>
-                        </>
+                        </div>
                     ))}
                 </div>
             </div>
