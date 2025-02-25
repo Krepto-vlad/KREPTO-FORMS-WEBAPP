@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./passFrom.scss";
 
 const PassForm = () => {
   const { id } = useParams();
@@ -49,10 +50,10 @@ const PassForm = () => {
   };
 
   return (
-    <div>
-      <h2>{form.title}</h2>
+    <div className="pass_wrapper">
+      <p className="title">{form.title}</p>
       {form.questions.map((q, index) => (
-        <div key={index}>
+        <div className="question-wrapper" key={index}>
           <p>{q}</p>
           <input value={answers[index]} onChange={(e) => handleChange(index, e.target.value)} />
         </div>
