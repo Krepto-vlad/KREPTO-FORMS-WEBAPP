@@ -8,15 +8,6 @@ const PassForm = () => {
   const [form, setForm] = useState({ title: "", questions: [] });
   const [answers, setAnswers] = useState<string[]>([]);
 
-  // useEffect(() => {
-  //   axios.get(`/forms/${id}`)
-  //     .then((res) => {
-  //       setForm(res.data);
-  //       setAnswers(new Array(res.data.questions.length).fill(""));
-  //     })
-  //     .catch((err) => console.error("Error loading form:", err));
-  // }, [id]);
-
   useEffect(() => {
     const fetchForm = async () => {
       try {
