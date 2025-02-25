@@ -25,7 +25,16 @@ const PassForm = () => {
 
   const handleSubmit = async () => {
     try {
-      await axios.post(`/forms/${id}/submit`, { answers });
+      const token = localStorage.getItem("token"); 
+      await axios.post(
+        `https://krepto-forms-backend.onrender.com/forms/${id}/submit`,
+        { answers },
+        {
+          headers: {
+            Authorization: token ? `Bearer ${token}` : "", 
+          },
+        }
+      );
       navigate("/");
     } catch (err) {
       console.error("Error sending responses:", err);
